@@ -1,15 +1,24 @@
 @font-face {
-  font-family: 'helveticaRoman';
-  src: url('./assets/helveticaRoman.otf');
+  font-family: 'helveticaNeue';
+  src: url('./assets/Helvetica Neue.ttf');
+}
+
+@font-face {
+  font-family: 'helveticaNeueLight';
+  src: url('./assets/Helvetica Neue Light.ttf');
+}
+
+@font-face {
+  font-family: 'helveticaNeueBold';
+  src: url('./assets/Helvetica Neue Bold.ttf');
 }
 
 body {
-  background-color: black;
+  background-color: #D34848;
 }
 
 .App {
-  text-align: center;
-  font-family: helveticaRoman;
+  font-family: helveticaNeue;
 }
 
 .App-logo {

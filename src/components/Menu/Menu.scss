@@ -1,9 +1,10 @@
 .menu-container {
+  position: fixed;
+
   .logo-container {
     display: flex;
     flex-direction: row;
     margin: 2.5rem;
-    position: fixed;
 
     .brand-name {
       color: #FFF;
@@ -11,6 +12,8 @@
       margin: 1rem;
       line-height: 3rem;
       letter-spacing: 0.3rem;
+      font-weight: bolder;
+      font-family: helveticaNeueLight;
     }
 
     .hamburger-icon {
@@ -18,8 +21,61 @@
       height: 2.5rem;
       width: 2.5rem;
       background-size: 100% 100%;
-      margin: 1rem;
+      margin: 1.1rem;
+      margin-right: 0.5rem;
       cursor: pointer;
     }
+  }
+
+  .circular-backdrop {
+    position: absolute;
+    height: 0rem;
+    width: 0rem;
+    background: black;
+    border-radius: 50%;
+    left: 4.75rem;
+    top: 4.75rem;
+    z-index: -1;
+    transition: all 0.5s;
+    overflow: hidden;
+  }
+
+  .show-circular-backdrop {
+    height: 30rem;
+    width: 30rem;
+    left: -3rem;
+    top: -6rem;
+  }
+
+  .menu-options {
+    position: absolute;
+    top: 5rem;
+    margin-left: 3.6rem;
+    margin-top: 2rem;
+    padding: 0;
+    list-style-type:none;
+    height: 0rem;
+    overflow: hidden;
+    transition: all 0.5s;
+
+    .option {
+      color: #FFF;
+      opacity: 0;
+      transform: translateY(2rem);
+      transition: all 0.5s;
+      font-size: 2rem;
+      font-family: helveticaNeueBold;
+      letter-spacing: 0.2rem;
+      margin-top: 0.8rem;
+    }
+
+    .show-option {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .expand-menu {
+    height: 10rem;
   }
 }
