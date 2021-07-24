@@ -1,0 +1,25 @@
+.menu-container {
+  .logo-container {
+    display: flex;
+    flex-direction: row;
+    margin: 2.5rem;
+    position: fixed;
+
+    .brand-name {
+      color: #FFF;
+      font-size: 2rem;
+      margin: 1rem;
+      line-height: 3rem;
+      letter-spacing: 0.3rem;
+    }
+
+    .hamburger-icon {
+      background-image: url('../../assets/hamburger.svg');
+      height: 2.5rem;
+      width: 2.5rem;
+      background-size: 100% 100%;
+      margin: 1rem;
+      cursor: pointer;
+    }
+  }
+}
