@@ -7,7 +7,7 @@
   .logo-container {
     display: flex;
     flex-direction: row;
-    margin: 2.5rem;
+    margin: 1.5rem;
 
     .brand-name {
       color: #FFF;
@@ -17,16 +17,21 @@
       letter-spacing: 0.3rem;
       font-weight: bolder;
       font-family: helveticaNeueLight;
+      transition: all 0.5s;
     }
 
     .hamburger-icon {
-      background-image: url('../../assets/hamburger.svg');
       height: 2.5rem;
       width: 2.5rem;
-      background-size: 100% 100%;
-      margin: 1.1rem;
+      margin: 1.5rem;
       margin-right: 0.5rem;
       cursor: pointer;
+
+      svg {
+        rect {
+          transition: all 0.5s;
+        }
+      }
     }
   }
 
@@ -36,8 +41,8 @@
     width: 0rem;
     background: black;
     border-radius: 50%;
-    left: 4.75rem;
-    top: 4.75rem;
+    left: 3.75rem;
+    top: 3.75rem;
     z-index: -1;
     transition: all 0.5s;
     overflow: hidden;

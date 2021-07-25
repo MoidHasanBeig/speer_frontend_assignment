@@ -1,0 +1,55 @@
+.white-btn-container {
+  position: absolute;
+  width: 5rem;
+  height: 3rem;
+
+  .button {
+    width: max-content;
+    position: relative;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+    background: #FFF;
+    border: none;
+    color: white;
+    font-size: 0.8em;
+    padding: 1.5em 3em;
+    cursor: pointer;
+    outline: none;
+    overflow: hidden;
+    border-radius: 100px;
+    z-index: 20;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .button span {
+    position: relative;
+    pointer-events: none;
+    transition: all 0.5s;
+  }
+  .button::before {
+    --size: 0;
+    content: '';
+    position: absolute;
+    left: var(--x);
+    top: var(--y);
+    width: var(--size);
+    height: var(--size);
+    background: radial-gradient(closest-side, #4405f7,red,green,blue,transparent);
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    transition: width .2s ease, height .2s ease;
+  }
+  .button:hover::before {
+    --size: 400px;
+  }
+  .button:hover span {
+    color: #FFF;
+  }
+  .btn-text {
+    text-align: center;
+    color: #666;
+    letter-spacing: 0.15rem;
+    font-weight: bold;
+  }
+}

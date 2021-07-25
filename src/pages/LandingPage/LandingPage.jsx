@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import './LandingPage.scss';
 import * as kampos from 'kampos';
+import RainbowBtn from '../../components/RainbowBtn/RainbowBtn';
+import WhiteBtn from '../../components/WhiteBtn/WhiteBtn';
 import img1 from './Image1.png';
 import img2 from './Image2.png';
 import img3 from './Image3.png';
@@ -32,65 +34,113 @@ const LandingPage = () => {
         loadImage(thirdImg)
     ];
 
-    const turbulence = kampos.effects.turbulence({ noise: kampos.noise.perlinNoise });
+    let turbulence;
+    let dissolveMap;
+    let dissolve;
 
-    const WIDTH = window.innerWidth;
-    const HEIGHT = window.innerHeight;
-    const CELL_FACTOR = 1;
-    const AMPLITUDE = CELL_FACTOR / WIDTH;
+    function animateCarousel() {
+      turbulence = kampos.effects.turbulence({ noise: kampos.noise.perlinNoise });
 
-    turbulence.frequency = { x: AMPLITUDE, y: AMPLITUDE };
-    turbulence.octaves = 4;
-    turbulence.isFractal = true;
+      let WIDTH = window.innerWidth;
+      let HEIGHT = window.innerHeight;
+      let CELL_FACTOR = 1;
+      let AMPLITUDE = CELL_FACTOR / WIDTH;
 
-    const mapTarget = document.createElement('canvas');
-    mapTarget.width = WIDTH;
-    mapTarget.height = HEIGHT;
+      turbulence.frequency = { x: AMPLITUDE, y: AMPLITUDE };
+      turbulence.octaves = 4;
+      turbulence.isFractal = true;
 
-    const dissolveMap = new kampos.Kampos({ target: mapTarget, effects: [turbulence], noSource: true });
+      let mapTarget = document.createElement('canvas');
+      mapTarget.width = WIDTH;
+      mapTarget.height = HEIGHT;
 
-    dissolveMap.draw();
+      dissolveMap = new kampos.Kampos({ target: mapTarget, effects: [turbulence], noSource: true });
 
-    const dissolve = kampos.transitions.dissolve();
+      dissolveMap.draw();
 
-    dissolve.map = mapTarget;
-    dissolve.high = 0.05; // for liquid-like effect
+      dissolve = kampos.transitions.dissolve();
 
-    const target = document.querySelector('#target');
-    const hippo = new kampos.Kampos({ target, effects: [dissolve] });
+      dissolve.map = mapTarget;
+      dissolve.high = 0.05; // for liquid-like effect
 
-    Promise.all(promisedImages).then(([fromImage, toImage]) => {
+      let target = document.querySelector('#target');
+      let hippo = new kampos.Kampos({ target, effects: [dissolve] });
+
+      Promise.all(promisedImages).then(([fromImage, toImage, third]) => {
         hippo.setSource({ media: fromImage, width: WIDTH, height: HEIGHT });
-
         dissolve.to = toImage;
-    }).then(function () {
+      }).then(function () {
         hippo.play(time => {
-            dissolve.progress = Math.abs(Math.sin(time * 4e-4)); // multiply time by a factor to slow it down a bit
+          dissolve.progress = Math.abs(Math.sin(time * 2e-4)); // multiply time by a factor to slow it down a bit
         });
-    });
+      });
+      // setTimeout(() => {
+      //   hippo.stop();
+      //   Promise.all(promisedImages).then(([fromImage, toImage, thirdImg]) => {
+      //     hippo.setSource({ media: thirdImg, width: WIDTH, height: HEIGHT });
+      //     dissolve.to = toImage;
+      //   }).then(function () {
+      //     hippo.play(time => {
+      //       dissolve.progress = Math.abs(Math.sin(time * 2e-4)); // multiply time by a factor to slow it down a bit
+      //     });
+      //   });
+      // },9000);
+      // setTimeout(() => {
+      //   hippo.stop();
+      //   Promise.all(promisedImages).then(([fromImage, toImage, thirdImg]) => {
+      //     hippo.setSource({ media: thirdImg, width: WIDTH, height: HEIGHT });
+      //     dissolve.to = fromImage;
+      //   }).then(function () {
+      //     hippo.play(time => {
+      //       dissolve.progress = Math.abs(Math.sin(time * 2e-4)); // multiply time by a factor to slow it down a bit
+      //       console.log(dissolve.progress);
+      //     });
+      //   });
+      // },18000);
+      // setTimeout(() => {
+      //   hippo.stop();
+      // },24000);
+      // setTimeout(() => {
+      //   hippo.destroy();
+      //   turbulence = null;
+      //   dissolveMap = null;
+      //   dissolve = null;
+      //   animateCarousel();
+      // },28000);
+    }
+
+    //start the carousel
+    animateCarousel();
+
   },[]);
 
   return (
     <div className="landing-page">
-    <main>
-      <section>
-        <figure>
+      <WhiteBtn className="white-btn-nav"/>
+      <main>
+        <div className="section" id="hero-carousel">
+          <section>
+            <figure>
+              <div className="cta-container">
+                <p className="hero-image-text">INTERACTIVE CONCERT EXPERIENCE</p>
+                <p className="hero-image-subtext">Experience your favourite artists like never<br/>before and from the comfort of your own home.</p>
+                <RainbowBtn />
+              </div>
+              <canvas id="target">
+                <img id="source-from" src={img1} alt="" />
+                <img id="source-to" data-src={img2} alt="" />
+                <img id="third-img" data-src={img3} alt="" />
+              </canvas>
+            </figure>
+          </section>
+        </div>
+        <div className="section" id="superior-sound">
           <div className="cta-container">
-            <p className="hero-image-text">INTERACTIVE CONCERT EXPERIENCE</p>
-            <p className="hero-image-subtext">Experience your favourite artists like never<br/>before and from the comfort of your own home.</p>
-            <div className="btn-container">
-              <div className="try-now-big"></div>
-              <p className="btn-text">TRY IT NOW</p>
-            </div>
+            <div className="heading">SUPERIOR SOUND</div>
+            <div className="subtext">Experience live versions of your<br />favourite songs.</div>
           </div>
-          <canvas id="target">
-            <img id="source-from" src={img1} alt="" />
-            <img id="source-to" data-src={img2} alt="" />
-            <img id="third-img" data-src={img3} alt="" />
-          </canvas>
-        </figure>
-      </section>
-    </main>
+        </div>
+      </main>
     </div>
   );
 }

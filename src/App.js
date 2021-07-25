@@ -62,7 +62,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Menu />
+        <Menu activeSection={activeSection}/>
           <Switch>
             <Route exact path="/" component={LandingPage} />
             <Route path="/pricing" component={Pricing} />

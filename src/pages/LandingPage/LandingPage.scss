@@ -1,4 +1,14 @@
 .landing-page {
+
+  .white-btn-nav {
+    right: 4rem;
+    top: 0;
+    margin: 2rem;
+    position: fixed;
+    z-index: 20;
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
   figure {
     margin: 0;
     height: 100vh;
@@ -28,86 +38,38 @@
         text-align: center;
         letter-spacing: 0.2rem;
         line-height: 2rem;
-      }
-      .btn-container {
-        position: absolute;
-        width: 100vw;
-        margin-top: 1.5rem;
-        cursor: pointer;
-
-        .try-now-big {
-          width: 8rem;
-          outline:0;
-          border-radius: 50px;
-          font-size: 0.8em;
-          overflow: hidden;
-          position: absolute;
-          left: 50%;
-          transform: translateX(-50%);
-          padding: 2.5em 3em;
-          margin: auto;
-          transition: all 500ms ease-in-out;
-          &::after, &::before {
-            content: "";
-            position: absolute;
-          }
-          &:hover, &:focus {
-            background: rgba(255, 255, 255, 1);
-          }
-          &::before {
-            background: transparent;
-            border-radius: 100%;
-            top: 50%;
-            left: 50%;
-            box-shadow: 0 1em 2em 3em rgba(255, 50, 0, 1),
-                        4em 0em 2em 2em rgba(155, 50, 0, 1),
-                        -4em -2em 2em 2em rgba(255, 0, 150, 1),
-                        -4em 2em 2em 4em rgba(0, 0, 150, 1),
-                        0 -3em 2em 3em rgba(120, 250, 0, 1),
-                        2em -1em 2em 2em rgba(50, 10, 200, 1);
-            width: 0;
-            height: 0;
-            animation: mix 5s linear infinite;
-          }
-        }
-        .btn-text {
-          width: 100%;
-          text-align: center;
-          color: #FFF;
-          z-index: 2;
-          letter-spacing: 0.15rem;
-          font-weight: bold;
-          position: absolute;
-          padding-top: 0.5rem;
-        }
-      }
-
-      @keyframes mix {
-
-        30% {
-          box-shadow: 0 -1em 2em 3em rgba(255, 0, 200, 1),
-                      4em -1em 2em 3em rgba(255, 50, 0, 1),
-                      -4em 2em 3em 2em rgba(155, 200, 0, 1),
-                      -4em -2em 2em 2em rgba(200, 0, 150, 1),
-                      0 3em 2em 2em rgba(20, 250, 0, 1),
-                      2em 1em 2em 2em rgba(50, 10, 250, 1);
-        }
-
-        60% {
-          box-shadow: 2em 1em 2em 3em rgba(55, 0, 200, 1),
-                      3em 1em 2em 3em rgba(25, 150, 0, 1),
-                      3em -2em 3em 3em rgba(155, 200, 0, 1),
-                      -4em 2em 2em 3em rgba(200, 0, 50, 1),
-                      0 -3em 2em 3em rgba(200, 250, 0, 1),
-                      -2em 1em 2em 3em rgba(50, 210, 250, 1);
-        }
-
+        margin-top: 1rem;
       }
     }
 
     canvas {
       background-size: cover;
       filter: brightness(0.7);
+    }
+  }
+
+  #superior-sound {
+    min-height: 100vh;
+    background-color: #D34848;
+    display: flex;
+    flex-direction: row;
+
+    .cta-container {
+      display: flex;
+      flex-direction: column;
+
+      .heading {
+        font-size: 3rem;
+        color: #FFF;
+        letter-spacing: 0.3rem;
+      }
+      .subtext {
+        color: #000;
+        margin-top: 1rem;
+        font-size: 2rem;
+        letter-spacing: 0.3rem;
+        font-family: helveticaNeueLight;
+      }
     }
   }
 }
