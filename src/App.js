@@ -12,7 +12,8 @@ import Menu from './components/Menu/Menu';
 import './App.scss';
 
 function App() {
-  const [activeSection,setActiveSection] = useState("top");
+  const [activeSection,setActiveSection] = useState("hero-carousel");
+  const [activeColor,setActiveColor] = useState("#000");
 
   //scrollThrottler, checkActiveSection, isInViewport together checks the current
   //section of page which is in view to change various formattings of menu etc.
@@ -62,9 +63,18 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Menu activeSection={activeSection}/>
+        <Menu
+          activeSection={activeSection}
+          activeColor={activeColor}
+          setActiveColor={setActiveColor}
+        />
           <Switch>
-            <Route exact path="/" component={LandingPage} />
+            <Route exact path="/">
+              <LandingPage
+                activeSection={activeSection}
+                activeColor={activeColor}
+              />
+            </Route>
             <Route path="/pricing" component={Pricing} />
             <Route path="/perks" component={Perks} />
             <Route path="/payment" component={Payment} />

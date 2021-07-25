@@ -13,12 +13,12 @@
     border: none;
     color: white;
     font-size: 0.8em;
-    padding: 1.5em 3em;
+    padding: 1.5em 4em;
     cursor: pointer;
     outline: none;
     overflow: hidden;
     border-radius: 100px;
-    z-index: 20;
+    z-index: 2;
     left: 50%;
     transform: translateX(-50%);
   }
@@ -44,7 +44,7 @@
     --size: 400px;
   }
   .button:hover span {
-    color: #FFF;
+    color: #FFF !important;
   }
   .btn-text {
     text-align: center;

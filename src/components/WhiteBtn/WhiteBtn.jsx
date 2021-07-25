@@ -17,7 +17,7 @@ const WhiteBtn = (props) => {
 
   return (
     <div className={`${props.className} white-btn-container`}>
-      <div className="white-btn button"><span className="btn-text">TRY IT NOW</span></div>
+      <div className="white-btn button"><span style={{color:props.activeColor}} className="btn-text">{props.text}</span></div>
     </div>
   );
 }

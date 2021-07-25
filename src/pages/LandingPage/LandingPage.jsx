@@ -7,7 +7,7 @@ import img1 from './Image1.png';
 import img2 from './Image2.png';
 import img3 from './Image3.png';
 
-const LandingPage = () => {
+const LandingPage = (props) => {
 
   useEffect( () => {
     // Notify when our images are ready
@@ -74,41 +74,7 @@ const LandingPage = () => {
           dissolve.progress = Math.abs(Math.sin(time * 2e-4)); // multiply time by a factor to slow it down a bit
         });
       });
-      // setTimeout(() => {
-      //   hippo.stop();
-      //   Promise.all(promisedImages).then(([fromImage, toImage, thirdImg]) => {
-      //     hippo.setSource({ media: thirdImg, width: WIDTH, height: HEIGHT });
-      //     dissolve.to = toImage;
-      //   }).then(function () {
-      //     hippo.play(time => {
-      //       dissolve.progress = Math.abs(Math.sin(time * 2e-4)); // multiply time by a factor to slow it down a bit
-      //     });
-      //   });
-      // },9000);
-      // setTimeout(() => {
-      //   hippo.stop();
-      //   Promise.all(promisedImages).then(([fromImage, toImage, thirdImg]) => {
-      //     hippo.setSource({ media: thirdImg, width: WIDTH, height: HEIGHT });
-      //     dissolve.to = fromImage;
-      //   }).then(function () {
-      //     hippo.play(time => {
-      //       dissolve.progress = Math.abs(Math.sin(time * 2e-4)); // multiply time by a factor to slow it down a bit
-      //       console.log(dissolve.progress);
-      //     });
-      //   });
-      // },18000);
-      // setTimeout(() => {
-      //   hippo.stop();
-      // },24000);
-      // setTimeout(() => {
-      //   hippo.destroy();
-      //   turbulence = null;
-      //   dissolveMap = null;
-      //   dissolve = null;
-      //   animateCarousel();
-      // },28000);
     }
-
     //start the carousel
     animateCarousel();
 
@@ -116,7 +82,11 @@ const LandingPage = () => {
 
   return (
     <div className="landing-page">
-      <WhiteBtn className="white-btn-nav"/>
+      <WhiteBtn
+        activeColor={props.activeColor}
+        text="TRY IT NOW"
+        className={`${(props.activeSection==="hero-carousel" || props.activeSection==="get-expcon") && "hide-nav-btn"} white-btn-nav`}
+      />
       <main>
         <div className="section" id="hero-carousel">
           <section>
@@ -138,6 +108,84 @@ const LandingPage = () => {
           <div className="cta-container">
             <div className="heading">SUPERIOR SOUND</div>
             <div className="subtext">Experience live versions of your<br />favourite songs.</div>
+            <WhiteBtn
+              activeColor={props.activeColor}
+              text="SEE DEMO"
+              className="superior-sound-cta"
+            />
+          </div>
+          <div className="images-container">
+            <div className="speaker-1" />
+            <div className="speaker-2" />
+          </div>
+        </div>
+        <div className="section" id="front-row">
+          <div className="cta-container">
+            <div className="heading">FRONT ROW SEATS</div>
+              <div className="subtext">Experience concerts up close<br />and personal.</div>
+              <WhiteBtn
+                activeColor={props.activeColor}
+                text="SEE DEMO"
+                className="superior-sound-cta"
+              />
+            </div>
+        </div>
+        <div className="section" id="perks">
+          <div className="heading">PERKS</div>
+          <div className="details-container">
+            <div className="perk perk-1">
+              <div className="title title-1">Subscription<br/>Payment<br/>Model</div>
+              <div className="desc desc-1">No commitment,<br/>cancel anytime. Never<br/>worry about forgetting<br/>a payment again.</div>
+            </div>
+            <div className="perk perk-2">
+              <div className="title title-2">No Fee<br/>Cancellation<br/>Policy</div>
+              <div className="desc desc-2">No commitment,<br/>cancel anytime. Never<br/>worry about forgetting<br/>a payment again.</div>
+            </div>
+            <div className="perk perk-3">
+              <div className="title title-3">Subscription<br/>Payment<br/>Model</div>
+              <div className="desc desc-3">No commitment,<br/>cancel anytime. Never<br/>worry about forgetting<br/>a payment again.</div>
+            </div>
+          </div>
+        </div>
+        <div className="section" id="reviews">
+        <div className="heading">REVIEWS</div>
+          <div className="image-container">
+            <div className="small-speaker-1" />
+            <div className="small-speaker-2" />
+          </div>
+          <div className="details-container">
+            <div className="review review-1">
+              <div className="stars" />
+              <div className="title title-1">ARTIST</div>
+              <div className="desc desc-1">"Love it, it's the<br/>best. I can't live<br/>without it!"</div>
+            </div>
+            <div className="review review-2">
+              <div className="stars" />
+              <div className="title title-2">PRODUCER</div>
+              <div className="desc desc-2">"Love it, it's the<br/>best. I can't live<br/>without it!"</div>
+            </div>
+            <div className="review review-3">
+              <div className="stars" />
+              <div className="title title-3">MUSIC FAN</div>
+              <div className="desc desc-3">"Love it, it's the<br/>best. I can't live<br/>without it!"</div>
+            </div>
+          </div>
+        </div>
+        <div className="section" id="get-expcon">
+          <div className="sec-1">
+            <div className="text-container">
+              <div className="title">GET EXP|CON NOW</div>
+              <div className="subtext">Purchase and download the app.</div>
+            </div>
+            <div className="cta-btn">
+              <RainbowBtn />
+            </div>
+          </div>
+          <div className="sec-2">
+            <footer>
+              <div className="brand-name">EXP|CON</div>
+              <div className="footer-text">2021 &copy; All Rights Reserved | Speer Technologies Incorporated</div>
+            </footer>
           </div>
         </div>
       </main>
